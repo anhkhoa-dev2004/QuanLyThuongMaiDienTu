@@ -1,0 +1,13 @@
+﻿Bang,KiemTra,SoDong,XuLy,ViDu
+DonHang,Đơn không có món hàng nào,0,Bỏ khỏi phân tích bán hàng,
+ChiTietDonHang,"Món có số lượng hoặc đơn giá không hợp lệ (trống, bằng 0, âm)",0,Bỏ món đó,
+PhieuXuat,Phiếu xuất không gắn đơn hàng,4,"Giữ lại, đưa vào màn Kho xuất bất thường để kiểm","PX10728, PX10912, PX11203, PX11392"
+KhachHang,Số điện thoại sai hoặc số giả (8 số cuối giống nhau),5,Không dùng số này để tìm khách khi lập đơn,"KH035, KH036, KH121, KH122, KH123"
+KhachHang,Địa chỉ trống hoặc quá ngắn,4,Lấy địa chỉ giao của đơn gần nhất (thủ tục sp_PhatHienVaSua_DuLieuThieu),"KH037, KH121, KH122, KH124"
+DuLieuTho_KhachHang,Tên viết hoa hết / thường hết / thừa khoảng trắng,26,"Viết hoa chữ cái đầu mỗi chữ, bỏ khoảng trắng thừa",
+DuLieuTho_KhachHang,"Số điện thoại có dấu chấm, gạch, khoảng trắng hoặc +84",152,Đưa về 10 số bắt đầu bằng 0,
+DuLieuTho_KhachHang,Số điện thoại sai không sửa được,7,Đánh dấu cần gọi xác nhận,"(trống), (trống), (trống)"
+DuLieuTho_KhachHang,"Địa chỉ viết tắt / viết hoa lộn xộn (Q.3, TPHCM, Thành phố Hồ Chí Minh...)",150,"Viết đầy đủ: Quận 3, TP.HCM",
+DuLieuTho_KhachHang,"Một số điện thoại xuất hiện nhiều lần (nhiều nguồn, nhiều lần nhập)",84,Giữ dòng nhập mới nhất,
+DuLieuTho_DonHang,"Một mã đơn sàn có nhiều dòng (sàn xuất file nhiều lần, trạng thái đổi dần)",32,Giữ dòng có NgayTao mới nhất (trạng thái mới nhất),"SPX0337186287, SPX0747768883, SPX0892075002"
+DuLieuTho_DonHang,Đơn thiếu ngày đặt hoặc tổng tiền,0,Bỏ đơn đó,

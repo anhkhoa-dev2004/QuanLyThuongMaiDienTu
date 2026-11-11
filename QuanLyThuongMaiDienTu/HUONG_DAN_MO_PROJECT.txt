@@ -1,0 +1,106 @@
+﻿HƯỚNG DẪN MỞ VÀ CHẠY PHẦN MỀM QUẢN LÝ BÁN HÀNG - KHO SHOPEE
+===========================================================
+
+Làm lần lượt từ bước 1 đến bước 6. Không bỏ bước nào.
+
+
+0. MÁY CẦN CÓ
+-------------
+- Windows 10 hoặc 11.
+- Visual Studio 2019 hoặc 2022, đã cài nhóm ".NET desktop development"
+  (mở Visual Studio Installer > Modify > tích ".NET desktop development" > Modify).
+- .NET Framework 4.7.2 (Windows 10/11 thường có sẵn).
+- SQL Server (bản Express hoặc Developer đều được) và SQL Server Management Studio (SSMS).
+- Có mạng ở lần build đầu tiên để Visual Studio tải gói Tesseract.
+- Microsoft Visual C++ Redistributable bản x86 và x64 (cần cho chức năng đọc chữ từ ảnh).
+  Đa số máy đã có; nếu thiếu, tải ở trang của Microsoft, tìm "Visual C++ Redistributable".
+
+
+1. TẠO DATABASE
+---------------
+1.1. Mở SSMS. Ô Server Name gõ tên SQL Server của máy (thường là localhost hoặc .\SQLEXPRESS),
+     Authentication chọn Windows Authentication, tích "Trust Server Certificate", bấm Connect.
+     Ghi lại đúng tên vừa gõ ở ô Server Name, bước 3 cần dùng.
+1.2. File > Open > File..., chọn file QuanLyThuongMaiDienTu_Database.sql (nằm cùng thư mục với file hướng dẫn này).
+1.3. Bấm Execute (hoặc phím F5). Đợi chạy hết, khoảng 2 - 5 phút.
+1.4. Tab Messages phải có dòng "Đã tạo xong database QuanLyThuongMaiDienTu" và "=== XONG".
+1.5. Kiểm tra: mở file KiemTra_SauKhiChay.sql, bấm Execute. Mỗi dòng phải ra ĐÚNG.
+
+Lưu ý: chạy lại file QuanLyThuongMaiDienTu_Database.sql sẽ XÓA database cũ và tạo lại dữ liệu mẫu từ đầu.
+
+
+2. BỎ FILE DỮ LIỆU CHỮ CHO CHỨC NĂNG ĐỌC MÃ VẬN ĐƠN TỪ ẢNH
+-----------------------------------------------------------
+2.1. Kiểm tra thư mục QuanLy_BanHang_Kho_Shopee\tessdata đã có file eng.traineddata (khoảng 22 MB) chưa.
+2.2. Nếu chưa có: vào https://github.com/tesseract-ocr/tessdata, bấm vào file eng.traineddata,
+     bấm nút "Download raw file". Không tải cả kho (nặng hơn 1 GB).
+2.3. Chép file eng.traineddata vào thư mục QuanLy_BanHang_Kho_Shopee\tessdata.
+     Chỉ cần file eng, không cần file của ngôn ngữ khác.
+
+
+3. SỬA TÊN SQL SERVER TRONG App.config
+--------------------------------------
+3.1. Mở file QuanLy_BanHang_Kho_Shopee\App.config bằng Notepad hoặc Visual Studio.
+3.2. Tìm dòng có chữ Data Source=localhost. Đổi localhost thành đúng tên đã ghi ở bước 1.1.
+     Ví dụ: Data Source=.\SQLEXPRESS
+     Có 2 dòng Data Source, sửa cả 2 cho giống nhau.
+3.3. Lưu file. Nếu tên ở bước 1.1 đúng là localhost thì giữ nguyên.
+
+
+4. MỞ PROJECT BẰNG VISUAL STUDIO
+--------------------------------
+4.1. Mở Visual Studio > Open a project or solution.
+4.2. Chọn file QuanLyThuongMaiDienTu.sln (nằm cùng thư mục với file hướng dẫn này), bấm Open.
+     KHÔNG chọn "Open a local folder" và không mở thẳng file .csproj, vì như vậy Visual Studio
+     sẽ không tải gói Tesseract và build báo lỗi "The type or namespace name 'Tesseract' could not be found".
+4.3. Solution Explorer bên phải phải hiện dòng "Solution 'QuanLyThuongMaiDienTu' (1 of 1 project)".
+
+
+5. BUILD
+--------
+5.1. Chuột phải dòng Solution 'QuanLyThuongMaiDienTu' > Restore NuGet Packages. Đợi thanh dưới cùng báo xong.
+5.2. Build > Rebuild Solution. Cửa sổ Output phải ra "1 succeeded, 0 failed".
+5.3. Kiểm tra thư mục QuanLy_BanHang_Kho_Shopee\bin\Debug có đủ:
+     - QuanLy_BanHang_Kho_Shopee.exe và QuanLy_BanHang_Kho_Shopee.exe.config
+     - Tesseract.dll
+     - 2 thư mục x86 và x64
+     - thư mục tessdata có file eng.traineddata
+     Nếu thiếu tessdata\eng.traineddata: File > Close Solution, mở lại file .sln rồi Rebuild lần nữa.
+
+
+6. CHẠY VÀ ĐĂNG NHẬP
+--------------------
+6.1. Bấm nút Start (hoặc phím F5).
+6.2. Đăng nhập bằng 1 trong 3 tài khoản có sẵn (mật khẩu đều là 123456):
+     - admin    : Quản trị hệ thống (dùng được mọi chức năng)
+     - thukho   : Thủ kho (chỉ các chức năng kho)
+     - banhang  : Nhân viên bán hàng (chỉ các chức năng bán hàng)
+6.3. Thử đọc mã vận đơn: menu 1. Bán hàng > Đọc mã vận đơn từ ảnh > chọn đơn > Chọn ảnh phiếu giao hàng >
+     Đọc chữ từ ảnh. Ô bên phải hiện chữ đọc được và có mã ứng viên là chạy đúng.
+
+
+7. TRỢ LÝ AI HỎI DỮ LIỆU (KHÔNG BẮT BUỘC)
+----------------------------------------
+- Các câu hỏi có sẵn trong Trợ lý chạy được ngay, không cần khóa.
+- Muốn hỏi tự do: lấy khóa ở Google AI Studio, dán vào dòng GeminiApiKey trong App.config
+  (value="khóa của bạn"), lưu rồi Rebuild. Không để khóa trong file khi gửi bài cho người khác.
+
+
+8. GẶP LỖI THƯỜNG GẶP
+--------------------
+- "Không kết nối được SQL Server": tên ở dòng Data Source trong App.config chưa đúng (xem bước 3),
+  hoặc SQL Server chưa bật (mở Services, tìm SQL Server (...), bấm Start), hoặc chưa tạo database (bước 1).
+  Sửa App.config xong phải Rebuild, vì phần mềm đọc file bin\Debug\QuanLy_BanHang_Kho_Shopee.exe.config.
+- "The type or namespace name 'Tesseract' could not be found": làm lại bước 4 và 5.1.
+  Vẫn lỗi thì vào Tools > Options > NuGet Package Manager > General, tích 2 ô
+  "Allow NuGet to download missing packages" và "Automatically check for missing packages during build",
+  rồi Rebuild.
+- "Không thấy file dữ liệu chữ": làm lại bước 2 và 5.3.
+- "Máy này thiếu file chạy của Tesseract": cài Microsoft Visual C++ Redistributable bản x86 và x64 rồi mở lại phần mềm.
+
+
+9. PHẦN PHÂN TÍCH BẰNG PYTHON VÀ POWER BI
+-----------------------------------------
+Xem file PhanTich_Python\HUONG_DAN_POWER_BI.txt.
+
+Sao lưu và khôi phục database: xem file HUONG_DAN_SAO_LUU.txt.

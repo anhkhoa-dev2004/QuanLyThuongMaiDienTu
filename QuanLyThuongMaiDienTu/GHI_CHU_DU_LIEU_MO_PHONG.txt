@@ -1,0 +1,180 @@
+﻿GHI CHÚ DỮ LIỆU MÔ PHỎNG
+========================
+
+Database là mô phỏng một shop bán đồ điện tử ở TP.HCM, bán qua 3 kênh: Chi nhánh Quận 3 (cửa hàng),
+Shopee, TikTok Shop. Dữ liệu chạy từ 01/10/2025 đến 30/09/2026.
+Mốc chốt dữ liệu: 23:59:59 ngày 30/09/2026. Đơn nào tới mốc này chưa xong thì để đúng trạng thái đang dở.
+
+Khi bảo vệ, chia dữ liệu làm 2 loại:
+  A. Lấy từ nguồn thật, có ghi nguồn: mức phí sàn (bảng PhiSan, cột NguonThongTin), thuế suất GTGT
+     (bảng ThueSuatGTGT, cột NguonThongTin), tỷ lệ bảo hiểm shop đóng 21,5% lương.
+  B. Mô phỏng theo quy tắc: mọi dữ liệu còn lại (đơn hàng, khách, nhập kho, đánh giá...).
+
+
+1. PHÍ SÀN (bảng PhiSan) - lấy từ bài viết, có ghi nguồn từng dòng
+-----------------------------------------------------------------
+Shopee (DT002):
+  - Phí xử lý giao dịch 4,91% đến 30/04/2026, 6% từ 01/05/2026, tính trên tiền khách trả.
+  - Phí hạ tầng 3.000đ mỗi đơn giao thành công.
+  - Phí cố định theo ngành hàng (cột MaDanhMuc), tính trên tiền các món thuộc ngành đó:
+      DM02 Phụ kiện máy tính 6,87%    DM04 Mạng & Wifi 6,87%    DM03 Màn hình 1,47%
+      DM01 Webcam 7,85%               DM05 Tai nghe, loa 7,85%
+    Riêng DM01 và DM05: bài viết không ghi tên webcam, tai nghe, loa nên lấy mức thấp nhất
+    của "các ngành Điện tử còn lại" (7,85% - 9,82%). Ghi rõ trong cột NguonThongTin.
+TikTok Shop (DT003):
+  - Phí giao dịch 5% trước 09/05/2026, 6% từ 09/05/2026, tính trên tiền khách trả.
+  - Phí hoa hồng nền tảng 4% (mức của ngành chưa được liệt kê). Chưa tìm được mức riêng
+    cho ngành điện tử nên dùng mức này. Lưu trong bảng với tên "Phí cố định" để cùng cột với Shopee.
+  - Phí xử lý đơn hàng 3.000đ mỗi đơn, thu từ 27/10/2025.
+Chi nhánh Quận 3 (DT001): không có phí sàn.
+
+Nguồn:
+  MISA eShop "Các loại phí sàn Shopee 2026" (06/05/2026)
+  MISA eShop "Phí cố định Shopee là gì" (07/10/2025)
+  MISA eShop "Các loại phí sàn TikTok Shop 2026" (19/08/2026)
+  VCCI "Từ 9/5, TikTok Shop tiếp tục tăng biểu phí với nhà bán hàng" (04/05/2026)
+  BigSeller "Phí TikTok Shop mới nhất 2026" (06/07/2026)
+  Sapo "Cập nhật phí sàn TMĐT tháng 5/2026" (12/05/2026)
+
+
+2. QUY TẮC MÔ PHỎNG ĐƠN HÀNG (bảng DonHang, VanDon, PhieuXuat, HangHoanVeKho)
+---------------------------------------------------------------------------
+Bán tại quầy (HinhThucNhan = "Nhận tại cửa hàng"):
+  - Chỉ có ở Chi nhánh Quận 3, đơn đặt trong 8h-21h. Khoảng 55% đơn của chi nhánh trong giờ này.
+  - Xuất kho 4-18 phút sau khi đặt, khách nhận luôn. Không có vận đơn.
+  - Trả bằng: tiền mặt 55%, chuyển khoản 30%, thẻ 15%.
+  - Chỉ nhận đơn tại quầy nếu dời giờ xuất kho sớm lên mà tồn kho vẫn không âm.
+
+Giao tận nơi:
+  - Đơn vị vận chuyển: Shopee: SPX 70%, GHN 20%, J&T 10%.
+                       TikTok: J&T 45%, GHN 30%, Viettel Post 25%.
+                       Chi nhánh: GHTK 50%, Ahamove 50%.
+  - Shipper lấy hàng trong 8h-18h. Giao tới khách trong 8h-21h.
+  - Thời gian đường đi: SPX 20-44 giờ, GHN 22-52, J&T 24-60, Viettel Post 30-70, GHTK 22-55, Ahamove 1-3.
+  - Đơn có đánh giá, trả hàng hay bảo hành thì ngày giao luôn trước ngày đó ít nhất 1 giờ.
+  - Mã vận đơn (MaTracking) là mã mô phỏng, không phải mã thật của hãng vận chuyển.
+  - Cách trả tiền: Shopee: COD 55%, ShopeePay 25%, thẻ 20%.
+                   TikTok: COD 65%, thẻ 20%, chuyển khoản 15%.
+                   Chi nhánh giao tận nơi: COD 50%, chuyển khoản 50%.
+  - Giảm giá của shop (voucher), chỉ trên Shopee và TikTok:
+      ngày sale, đơn từ 3 triệu: 50% số đơn được giảm 100.000đ;
+      ngày sale, đơn từ 1 triệu: 50% số đơn được giảm 50.000đ;
+      ngày thường, đơn từ 500.000đ: 10% số đơn được giảm 20.000đ.
+  - Phí ship khách trả: Shopee, TikTok: đơn từ 500.000đ thì 70% được miễn ship,
+    còn lại 15.000 - 22.000đ. Chi nhánh: đơn dưới 1 triệu thu 20.000đ.
+
+Đơn hủy (149 đơn):
+  - 30 đơn COD "Giao không thành công": đã xuất kho, giao 2-4 ngày không được, hàng về lại kho
+    2-5 ngày sau (bảng HangHoanVeKho). Chỉ chọn đơn mà lúc xuất kho vẫn đủ hàng.
+  - Các đơn còn lại hủy trước khi xuất kho, lý do chọn theo tỷ lệ: khách đổi ý 30%,
+    đổi địa chỉ 15%, đổi sản phẩm hoặc số lượng 15%, tìm được chỗ rẻ hơn 15%, đặt trùng 10%,
+    không xác nhận lại qua điện thoại 15%.
+  - Đơn hủy: 75% là COD.
+  - DH006 (đơn mẫu cũ): hủy vì shop hết hàng. Đã thử lấy hàng ở cả 2 kho, kho nào lấy
+    cũng làm tồn kho món SKU008 bị âm về sau.
+
+Đơn đang dở tại mốc chốt 30/09/2026 23:59:59:
+  - Chờ xác nhận: đơn chưa được xuất kho trước 15h ngày 30/09.
+  - Chờ lấy hàng: đã xuất kho nhưng shipper chưa tới lấy.
+  - Đang giao: shipper đã lấy nhưng chưa tới tay khách.
+
+Địa chỉ giao: lấy theo địa chỉ khách. Khách KH037 bị trống địa chỉ (dữ liệu bẩn cài sẵn để thử
+chức năng dọn dữ liệu), nên các đơn của khách này dùng địa chỉ mô phỏng "45 Lê Văn Sỹ, Phường 13, Quận 3".
+
+
+3. DỮ LIỆU BẨN CÀI SẴN (giữ lại có chủ đích)
+---------------------------------------------
+  - KH121, KH122, KH123 dùng chung số giả 0900000000. Hàm fn_ChuanHoaSoDienThoai coi số có
+    8 chữ số cuối giống hệt nhau là số giả, nên lúc lập đơn mới không bị gộp nhầm vào các khách này.
+  - KH037 trống địa chỉ. Một số khách chỉ ghi "TP.HCM".
+  - 4 phiếu xuất không gắn đơn nào (PX10728, PX10912, PX11203, PX11392) và 5 dòng xuất nhiều hơn
+    khách đặt: để thử chức năng phát hiện xuất kho bất thường.
+
+
+4. HÓA ĐƠN VÀ THUẾ GTGT (bảng HoaDon, ChiTietHoaDon, QuanLyHDDT, ThueSuatGTGT, ThongTinCuaHang)
+------------------------------------------------------------------------------------------------
+Thông tin người bán (ThongTinCuaHang) là MÔ PHỎNG: tên "Cửa hàng Thiết Bị Số Quận 3 (tên mô phỏng)",
+mã số thuế 0312345678 không phải mã số thuế thật của doanh nghiệp nào.
+
+Thuế suất (ThueSuatGTGT) - lấy theo quy định, có ghi nguồn trong cột NguonThongTin:
+  - Đến 30/06/2025: 10%.
+  - 01/07/2025 - 31/12/2026: 8% (giảm 2% theo Nghị định 174/2025/NĐ-CP). Hàng điện tử, máy tính,
+    phụ kiện không nằm trong nhóm không được giảm. Nên tự đối chiếu phụ lục gốc của nghị định.
+  - Từ 01/01/2027: tạm để 10%, sửa lại nếu nhà nước gia hạn mức giảm.
+  Toàn bộ hóa đơn trong dữ liệu (10/2025 - 09/2026) nên đều là 8%.
+
+Quy tắc lập hóa đơn:
+  - Mỗi đơn đã giao (kể cả đơn sau đó bị trả hàng) có đúng 1 hóa đơn bán hàng: 1453 hóa đơn.
+    Đơn hủy và đơn chưa giao xong thì chưa có hóa đơn.
+  - Ngày lập: 2 - 40 phút sau lúc giao xong; nếu khách trả hàng sớm hơn thì lập trước lúc trả 1 phút.
+  - Tiền trên hóa đơn = tiền hàng - giảm giá của shop. Không gồm phí ship khách trả.
+    Giá bán là giá đã có thuế, nên tiền chưa thuế = tổng tiền x 100 / 108, làm tròn tới đồng,
+    tiền thuế = tổng tiền - tiền chưa thuế.
+  - Đơn có trả hàng: 1 hóa đơn "Điều chỉnh giảm" gắn với hóa đơn gốc (cột MaHDGoc), lập 10 - 120
+    phút sau lần trả cuối, số tiền bằng đúng số tiền đã hoàn cho khách: 92 hóa đơn.
+  - Mã hóa đơn HD000001... đánh theo thứ tự ngày lập.
+  - Bảng QuanLyHDDT: mã tra cứu là chuỗi ngẫu nhiên, cột chữ ký ghi "MÔ PHỎNG - chưa ký số thật,
+    chưa gửi cơ quan thuế". Phần mềm chỉ in bản xem trước, không phải hóa đơn điện tử có giá trị pháp lý.
+  - Doanh thu theo hóa đơn = tổng hóa đơn bán hàng - tổng hóa đơn điều chỉnh giảm.
+
+
+5. CHI PHÍ VẬN HÀNH (bảng ChiPhiVanHanh) - MÔ PHỎNG, 10/2025 - 09/2026
+-----------------------------------------------------------------------
+Shop không có sổ chi phí thật nên các số dưới đây là giả định để phân tích lãi ròng. Muốn dùng số thật thì sửa ở
+màn "Chi phí vận hành và lãi ròng" trên WinForms, báo cáo và file Python tự tính lại.
+  - Thuê mặt bằng cửa hàng Quận 3: 15.000.000 đ/tháng.
+  - Thuê kho Tân Bình (KHO01) 6.000.000 đ, kho Thủ Đức (KHO02) 4.500.000 đ/tháng. KHO03 chưa dùng nên không tính.
+  - Lương: thủ kho (NV002) 8.000.000 đ, nhân viên bán hàng (NV003) 7.000.000 đ. Chủ shop (NV001) không tính lương.
+  - Bảo hiểm phần shop đóng = 21,5% lương (bảo hiểm xã hội 17,5%, bảo hiểm y tế 3%, bảo hiểm thất nghiệp 1%).
+  - Thưởng Tết tháng 02/2026: 1 tháng lương mỗi nhân viên (Tết 17/02/2026).
+  - Điện, nước, internet: 1,7 - 2,55 triệu/tháng, tháng 4 - 6 cao hơn vì nóng.
+  - Đóng gói: 6.000 đ mỗi đơn giao đi, 1.500 đ túi mỗi đơn bán tại quầy, đếm theo phiếu xuất trong tháng.
+  - Quảng cáo trên sàn: 2% tiền hàng của đơn không hủy trên Shopee và TikTok trong tháng.
+  - Phí ship cho đơn chi nhánh giao tận nơi: Giao Hàng Tiết Kiệm 30.000 đ/đơn, Ahamove 45.000 đ/đơn,
+    trừ đi phí ship khách đã trả (đơn sàn thì sàn thu phí ship nên không tính ở đây).
+Kết quả: tổng chi phí 633.613.500 đ cả năm (khoảng 17% doanh thu), trong khi lãi sau phí sàn chỉ 231.114.432 đ
+(6,2% doanh thu), nên với mức chi phí giả định này shop lỗ cả 12 tháng. Đây là kết luận rút ra từ số mô phỏng,
+không phải số thật của shop nào.
+Hàng mất, hỏng trong báo cáo lãi ròng lấy từ dữ liệu có sẵn: 4 phiếu xuất không gắn đơn, 5 dòng xuất nhiều hơn
+khách đặt (mục 3) và 3 cái thiếu khi kiểm kê (mục 9), tính theo giá nhập bình quân.
+
+
+6. CÔNG NỢ NHÀ CUNG CẤP (bảng ThanhToanNCC, cột NhaCungCap.SoNgayCongNo) - MÔ PHỎNG
+------------------------------------------------------------------------------------
+  - Số ngày được nợ: NCC01 trả ngay (0 ngày), NCC03 15 ngày, NCC02 30 ngày, NCC04 45 ngày.
+  - NCC01 trả tiền mặt 20 - 50 phút sau khi nhận hàng. Các nhà cung cấp còn lại chuyển khoản đúng ngày hết hạn
+    lúc 9h - 11h, khoảng 20% số phiếu trả trễ 1 - 4 ngày, rơi vào Chủ nhật thì dời sang thứ Hai.
+  - Mỗi phiếu trả 1 lần đủ tiền. Phiếu chưa tới hạn trả ở mốc chốt thì để còn nợ.
+Kết quả: 179 lần trả tiền; còn nợ 13 phiếu nhập, 218.795.000 đ, chưa phiếu nào quá hạn.
+
+
+7. BẢO HÀNH (cột SanPham.SoThangBaoHanh, bảng BaoHanh) - MÔ PHỎNG
+-----------------------------------------------------------------
+  - Thời hạn bảo hành theo mức thường gặp của từng loại hàng, CHƯA đối chiếu với chính sách từng hãng:
+      chuột, bàn phím, tai nghe, loa 12 tháng; lót chuột, giá đỡ 6 tháng; cáp sạc Anker 18 tháng;
+      router, webcam, màn hình LG 24 tháng; màn hình Dell 36 tháng; ổ cứng SSD Samsung 60 tháng.
+  - Phiếu bảo hành chỉ lấy từ đơn "Đã giao", món không bị trả lại. Mỗi dòng hàng có xác suất gửi bảo hành
+    0,3% - 3% tùy loại (hàng có pin, có mạch dễ hỏng hơn). Ngày nhận ít nhất 5 ngày sau ngày giao và còn trong hạn bảo hành.
+  - Kết quả: 15% từ chối (rơi vỡ, vào nước), 25% hãng đổi sản phẩm mới, 60% hãng sửa. Thời gian xử lý 1 - 25 ngày.
+    Shop chịu 35.000 đ tiền gửi hàng đi hãng và nhận về cho mỗi phiếu sửa hoặc đổi. Phiếu chưa xong ở mốc chốt để "Đang xử lý".
+  - BH001 (phiếu mẫu cũ): khách không chờ sửa, chuyển sang trả hàng (phiếu TH001).
+Kết quả: 32 phiếu (2 đang xử lý), shop chịu 840.000 đ.
+
+
+8. TIỀN SÀN CHUYỂN VỀ (bảng TienSanChuyenVe) - MÔ PHỎNG
+-------------------------------------------------------
+  - Sàn giữ tiền 7 ngày sau khi giao (hoặc sau lần khách trả hàng cuối cùng), rồi chuyển vào thứ Tư kế tiếp:
+    Shopee lúc 14h (mã đợt SPE-ngày), TikTok Shop lúc 15h30 (mã đợt TTS-ngày). Đây là quy tắc giả định, không phải lịch thật của sàn.
+  - Số tiền sàn chuyển = tiền phần mềm tính shop được nhận (view vw_TienDonHang). Đơn khách trả hết hàng thì số này
+    có thể âm vì phần mềm vẫn tính phí sàn cho đơn đã giao; số âm nghĩa là sàn trừ vào số dư của shop (21 đơn).
+  - Cài sẵn để thử chức năng đối soát: DH10121 và DH10232 (Shopee) sàn trả thiếu 3.000 đ;
+    DH10089 (TikTok) giao xong từ lâu mà sàn chưa chuyển tiền.
+Kết quả: 1.046 đơn đã có tiền về, 23 đơn chưa tới hạn chuyển ở mốc chốt.
+
+
+9. KIỂM KÊ CUỐI QUÝ (bảng PhieuKiemKe, ChiTietKiemKe) - MÔ PHỎNG
+---------------------------------------------------------------
+  - KK001 kho KHO01 lúc 20:15 và KK002 kho KHO02 lúc 20:30 ngày 30/09/2026 (sau lần xuất kho cuối lúc 19:53), chốt lúc 21:40 và 21:50.
+  - Số trên sổ lấy đúng tồn kho tính từ các phiếu nhập, xuất, trả hàng, hàng hoàn. Lệch 3 món, mỗi món thiếu 1 cái:
+      KHO01 Lót chuột Corsair (hỏng do ẩm mốc), KHO01 Cáp sạc Anker (thất lạc), KHO02 Chuột Logitech (thất lạc).
+  - Chưa có phiếu chuyển kho nào trong dữ liệu; chức năng chuyển kho có sẵn trên WinForms.

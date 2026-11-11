@@ -1,0 +1,92 @@
+﻿====================================================================================================
+VIỆC CẦN LÀM - số liệu từ 01/10/2025 đến 30/09/2026 (nguồn: file .sql)
+====================================================================================================
+
+1. BÁN ĐƯỢC BAO NHIÊU
+   Doanh thu (không tính đơn hủy): 3.712.302.000 đ từ 1467 đơn.
+   Đơn hủy: 149 / 1616 đơn (9,2%), trong đó 30 đơn giao không thành công (hàng đã xuất rồi quay về).
+   Giá trị 1 đơn trung bình: 2.530.540 đ.
+   Lãi gộp theo giá nhập trung bình (chưa trừ phí sàn): 548.471.798 đ (14,8% doanh thu).
+   Phí sàn đã trả cho các đơn đã giao: 286.300.555 đ. Tiền hoàn cho khách: 128.361.919 đ.
+   Lãi sau phí sàn và tiền hoàn (giống màn Báo cáo doanh thu): 231.114.432 đ (6,2% doanh thu).
+     - Chi nhánh Quận 3: tiền hàng 1.013.486.000 đ, phí sàn 0 đ, lãi sau phí 136.851.713 đ (13,5% tiền hàng).
+     - Gian hàng TikTok Shop: tiền hàng 868.207.000 đ, phí sàn 83.044.385 đ, lãi sau phí 46.772.740 đ (5,4% tiền hàng).
+     - Gian hàng Đại lý Shopee: tiền hàng 1.808.409.000 đ, phí sàn 203.256.170 đ, lãi sau phí 47.489.979 đ (2,6% tiền hàng).
+   Tháng bán tốt nhất: 2026-01 (406,2 triệu); tháng thấp nhất: 2025-10 (241,2 triệu).
+   8 / 12 sản phẩm làm ra 80% doanh thu (món chủ lực): Tai nghe Bluetooth Sony WH-1000XM5, Màn hình Dell UltraSharp 24 inch, Ổ cứng SSD Samsung 980 Pro 1TB, Màn hình Gaming LG UltraGear 27 inch, Bàn phím cơ AKKO 3087, Loa Bluetooth JBL Charge 5, Chuột không dây Logitech M330, Lót chuột Gaming RGB Corsair.
+   Món đang hot (30 ngày gần bán nhanh hơn trung bình 90 ngày từ 20%): Màn hình Dell UltraSharp 24 inch (dự đoán bán 17 cái trong 30 ngày tới), Lót chuột Gaming RGB Corsair (dự đoán bán 81 cái trong 30 ngày tới), Webcam Full HD Logitech C922 (dự đoán bán 18 cái trong 30 ngày tới), Giá đỡ Laptop Hợp kim Nhôm (dự đoán bán 35 cái trong 30 ngày tới).
+
+2. KHÁCH MUA VÌ CẢM XÚC HAY VÌ CẦN DÙNG (khảo sát "Vì sao bạn mua?" sau khi chốt đơn)
+   Cảm xúc: 327 câu trả lời (70,9%), các đơn này mang về 873,4 triệu (74,5% doanh thu có khảo sát).
+   Cần dùng thật: 87 câu trả lời (18,9%), các đơn này mang về 198,9 triệu (17,0% doanh thu có khảo sát).
+   Không rõ: 47 câu trả lời (10,2%), các đơn này mang về 99,8 triệu (8,5% doanh thu có khảo sát).
+   Chi tiết từng nhóm và cách bán hợp với nhóm đó:
+   - Thói quen (Cảm xúc): 122 câu, đơn TB 2,4 triệu, hào hứng 3,3/5.
+       Cách bán: Giữ mọi thứ quen thuộc: giá ổn định, giao đúng hẹn, nhắn nhắc khi gần hết hàng. Đừng đổi đóng gói lung tung.
+   - Nhu cầu thực dụng (Cần dùng thật): 87 câu, đơn TB 2,3 triệu, hào hứng 2,8/5.
+       Cách bán: Ghi rõ thông số, so sánh, hướng dẫn dùng. Nhóm này cần lý do rõ ràng, trả lời câu hỏi nhanh là chốt.
+   - Hưng phấn khuyến mãi (Cảm xúc): 78 câu, đơn TB 2,3 triệu, hào hứng 4,4/5.
+       Cách bán: Dồn ưu đãi vào ngày sale, ghi rõ giá gốc - giá giảm. Lưu ý nhóm này dễ đổi ý nên ghi rõ mô tả, ảnh thật.
+   - Khác / không rõ (Không rõ): 47 câu, đơn TB 2,1 triệu, hào hứng 2,7/5.
+       Cách bán: Câu trả lời không khớp từ nào trong từ điển. Đọc thử vài câu rồi thêm từ khóa vào từ điển lý do mua.
+   - Sợ bỏ lỡ (Cảm xúc): 45 câu, đơn TB 2,6 triệu, hào hứng 4,2/5.
+       Cách bán: Cho khách thấy người khác đang mua: "đã bán 1.000+", "còn 5 cái", đánh giá có ảnh, đếm ngược giờ sale.
+   - Hâm mộ thương hiệu (Cảm xúc): 43 câu, đơn TB 3,5 triệu, hào hứng 4,4/5.
+       Cách bán: Nói nhiều về hãng: hàng chính hãng, mẫu mới nhất, câu chuyện của hãng. Có hàng mới thì báo nhóm này đầu tiên.
+   - Đẳng cấp / thể diện (Cảm xúc): 34 câu, đơn TB 3,7 triệu, hào hứng 3,9/5.
+       Cách bán: Bán hình ảnh sang: hộp đẹp, hàng chính hãng, bảo hành dài. Không giảm giá sâu vì làm mất cảm giác sang.
+   - Hên / tâm linh (Cảm xúc): 5 câu, đơn TB 3,0 triệu, hào hứng 4,0/5.
+       Cách bán: Bán theo dịp: ngày vía, đầu năm, khai trương. Gói quà đỏ, lời chúc may mắn, giao đúng ngày đẹp.
+
+3. KHÁCH VUI HAY BUỒN
+   75,8% đánh giá từ 4 sao trở lên. 41 đánh giá 4-5 sao nhưng lời viết lại chê.
+   - Bàn phím cơ AKKO 3087: Khách tạm hài lòng, cần theo dõi: 70% đánh giá từ 4 sao trở lên, trung bình 4,0 sao (88 đánh giá). Lời chê chiếm 6%. Trả hàng 3,8%, lý do nhiều nhất: Hàng lỗi / hư hỏng / trầy xước.
+   - Màn hình Dell UltraSharp 24 inch: Khách tạm hài lòng, cần theo dõi: 79% đánh giá từ 4 sao trở lên, trung bình 4,3 sao (34 đánh giá). Lời chê chiếm 3%. Trả hàng 0,7%, lý do nhiều nhất: Hàng lỗi / hư hỏng / trầy xước.
+   - Lót chuột Gaming RGB Corsair: Khách tạm hài lòng, cần theo dõi: 70% đánh giá từ 4 sao trở lên, trung bình 3,9 sao (160 đánh giá). Lời chê chiếm 8%. Trả hàng 2,8%, lý do nhiều nhất: Hàng lỗi / hư hỏng / trầy xước.
+   - Tai nghe Bluetooth Sony WH-1000XM5: Khách tạm hài lòng, cần theo dõi: 79% đánh giá từ 4 sao trở lên, trung bình 4,1 sao (28 đánh giá). Lời chê chiếm 11%. Trả hàng 6,4%, lý do nhiều nhất: Không đúng mô tả / hàng giả.
+   - Loa Bluetooth JBL Charge 5: Khách đang KHÔNG hài lòng: 42% đánh giá từ 4 sao trở lên, trung bình 2,9 sao (24 đánh giá). Lời chê chiếm 33%. Trả hàng 9,2%, lý do nhiều nhất: Hàng lỗi / hư hỏng / trầy xước.
+   - Router Wifi 6 TP-Link Archer AX12: Khách tạm hài lòng, cần theo dõi: 67% đánh giá từ 4 sao trở lên, trung bình 3,9 sao (57 đánh giá). Lời chê chiếm 11%. Trả hàng 3,9%, lý do nhiều nhất: Đổi ý / không có nhu cầu.
+   - Webcam Full HD Logitech C922: Khách tạm hài lòng, cần theo dõi: 63% đánh giá từ 4 sao trở lên, trung bình 3,8 sao (40 đánh giá). Lời chê chiếm 10%. Trả hàng 3,8%, lý do nhiều nhất: Đổi ý / không có nhu cầu.
+   - Màn hình Gaming LG UltraGear 27 inch: Khách tạm hài lòng, cần theo dõi: 67% đánh giá từ 4 sao trở lên, trung bình 4,0 sao (33 đánh giá). Lời chê chiếm 6%. Trả hàng 3,8%, lý do nhiều nhất: Giao hàng chậm.
+   Lý do trả hàng nhiều nhất: Hàng lỗi / hư hỏng / trầy xước (45 phiếu), Đổi ý / không có nhu cầu (16 phiếu), Giao sai / thiếu hàng (12 phiếu).
+
+4. KHO HÀNG
+   - Màn hình Dell UltraSharp 24 inch - ỔN: Đang hot: đăng bài, chạy quảng cáo ngay và xem tồn kho mỗi ngày; gợi ý khách mua kèm "Webcam Full HD Logitech C922".
+   - Lót chuột Gaming RGB Corsair - ỔN: Đang hot: đăng bài, chạy quảng cáo ngay và xem tồn kho mỗi ngày; gợi ý khách mua kèm "Chuột không dây Logitech M330".
+   - Router Wifi 6 TP-Link Archer AX12 - ĐẶT HÀNG NGAY: Đặt 17 cái trong tuần này để đủ bán 30 ngày sau khi hàng về.
+   - Webcam Full HD Logitech C922 - ĐẶT HÀNG NGAY: Đặt 22 cái trong tuần này để đủ bán 30 ngày sau khi hàng về. Món đang hot nên số đặt đã tính theo tốc độ bán 30 ngày gần nhất.
+   - Giá đỡ Laptop Hợp kim Nhôm - ỔN: Đang hot: đăng bài, chạy quảng cáo ngay và xem tồn kho mỗi ngày; gợi ý khách mua kèm "Lót chuột Gaming RGB Corsair".
+   Tiền đang nằm trong kho (tính theo giá nhập trung bình): 280.788.896 đ.
+
+5. KHÁCH HÀNG
+   - Hạng 5 - Khách ruột: 22 khách, tổng mua 2299,1 triệu. Mua gần đây, mua nhiều, chi nhiều. Giữ chân: quà tri ân, cho dùng thử hàng mới trước, đừng spam giảm giá.
+   - Hạng 4 - Khách thân: 22 khách, tổng mua 816,4 triệu. Mua khá đều. Mời vào nhóm khách thân, báo sớm đợt sale, gợi ý món hay mua kèm để tăng giá trị đơn.
+   - Hạng 3 - Khách thường: 22 khách, tổng mua 293,3 triệu. Mua vừa phải. Nhắn tin khi có hàng mới cùng loại khách hay mua, tặng mã giảm nhỏ cho đơn tiếp theo.
+   - Hạng 2 - Khách ít ghé: 23 khách, tổng mua 221,4 triệu. Lâu lâu mới mua. Gửi mã giảm giá có hạn ngắn để kéo quay lại, hỏi xem lần trước có gì chưa hài lòng.
+   - Hạng 1 - Khách sắp mất: 23 khách, tổng mua 82,2 triệu. Lâu rồi không quay lại, mua ít. Gọi hỏi thăm hoặc gửi ưu đãi lớn một lần; nếu vẫn không mua thì thôi, đừng tốn tiền quảng cáo.
+
+6. MÓN NÊN BÁN KÈM (combo)
+   - Webcam Full HD Logitech C922 + Màn hình Dell UltraSharp 24 inch: 47,0% khách mua món đầu có mua kèm món sau, gấp 4,9 lần bình thường.
+   - Màn hình Dell UltraSharp 24 inch + Webcam Full HD Logitech C922: 44,9% khách mua món đầu có mua kèm món sau, gấp 4,9 lần bình thường.
+   - Màn hình Gaming LG UltraGear 27 inch + Bàn phím cơ AKKO 3087: 62,8% khách mua món đầu có mua kèm món sau, gấp 3,4 lần bình thường.
+   - Tai nghe Bluetooth Sony WH-1000XM5 + Cáp sạc Type-C Anker 67W: 62,2% khách mua món đầu có mua kèm món sau, gấp 2,1 lần bình thường.
+   - Ổ cứng SSD Samsung 980 Pro 1TB + Cáp sạc Type-C Anker 67W: 60,4% khách mua món đầu có mua kèm món sau, gấp 2,0 lần bình thường.
+
+7. LÃI THẬT SAU KHI TRỪ CHI PHÍ (chi phí vận hành là số mô phỏng, sửa ở màn Chi phí vận hành và lãi ròng)
+   Lãi sau phí sàn 231.114.432 đ - chi phí vận hành 633.613.500 đ - hàng mất, hỏng 55.558.386 đ - bảo hành shop chịu 840.000 đ = lãi ròng -458.897.454 đ.
+   Số tháng có lãi ròng dương: 0 / 12. Chi phí vận hành bằng 17,1% doanh thu, trong khi lãi sau phí sàn chỉ bằng 6,2% doanh thu.
+     - Nhân viên: 233.700.000 đ
+     - Mặt bằng: 180.000.000 đ
+     - Kho bãi: 126.000.000 đ
+     - Quảng cáo: 53.960.000 đ
+     - Điện nước, internet: 25.330.000 đ
+     - Đóng gói: 8.188.500 đ
+     - Vận chuyển: 6.435.000 đ
+   Muốn hòa vốn với mức chi phí này, mỗi tháng cần lãi sau phí sàn thêm khoảng 38.241.455 đ.
+
+8. TIỀN SÀN CHUYỂN VỀ VÀ NỢ NHÀ CUNG CẤP
+   - Khớp: 1044 đơn
+   - Sàn chưa chuyển (chưa tới hạn): 23 đơn
+   - Sàn trả thiếu: 2 đơn
+   - Quá 14 ngày sàn chưa chuyển tiền: 1 đơn
+   Nợ nhà cung cấp còn 218.795.000 đ (13 phiếu nhập), trong đó quá hạn 0 đ.

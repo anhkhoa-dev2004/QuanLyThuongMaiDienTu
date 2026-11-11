@@ -1,0 +1,77 @@
+HƯỚNG DẪN SAO LƯU VÀ KHÔI PHỤC DATABASE
+======================================
+
+Database QuanLyThuongMaiDienTu chứa toàn bộ đơn hàng, kho, hóa đơn, công nợ. Máy hỏng ổ cứng hoặc lỡ xóa nhầm
+mà không có bản sao lưu thì mất hết. Nên sao lưu mỗi ngày sau giờ đóng cửa và giữ bản sao ở chỗ khác máy chính
+(ổ cứng rời, Google Drive, OneDrive).
+
+Lưu ý: chạy lại file QuanLyThuongMaiDienTu_Database.sql sẽ XÓA database cũ và tạo lại dữ liệu mẫu.
+Đang dùng thật thì KHÔNG chạy lại file đó; muốn quay về dữ liệu cũ thì khôi phục từ bản sao lưu.
+
+
+1. SAO LƯU BẰNG TAY TRONG SSMS
+------------------------------
+1.1. Tạo thư mục D:\SaoLuu (hoặc thư mục khác mà tài khoản chạy SQL Server được phép ghi).
+1.2. Mở SSMS, bấm New Query, dán lệnh sau rồi bấm Execute:
+
+BACKUP DATABASE QuanLyThuongMaiDienTu
+TO DISK = N'D:\SaoLuu\QuanLyThuongMaiDienTu.bak'
+WITH INIT, CHECKSUM, NAME = N'Sao lưu QuanLyThuongMaiDienTu';
+
+1.3. Kiểm tra file sao lưu đọc lại được:
+
+RESTORE VERIFYONLY FROM DISK = N'D:\SaoLuu\QuanLyThuongMaiDienTu.bak' WITH CHECKSUM;
+
+     Thấy dòng "The backup set on file 1 is valid." là được.
+1.4. Chép file .bak sang ổ cứng rời hoặc thư mục Google Drive / OneDrive.
+
+Muốn giữ nhiều bản theo ngày thì đặt tên file có ngày, ví dụ:
+
+DECLARE @File NVARCHAR(260) = N'D:\SaoLuu\QuanLyThuongMaiDienTu_' + FORMAT(GETDATE(), 'yyyyMMdd') + N'.bak';
+BACKUP DATABASE QuanLyThuongMaiDienTu TO DISK = @File WITH INIT, CHECKSUM;
+
+
+2. TỰ SAO LƯU MỖI TỐI (SQL Server Express không có SQL Server Agent nên dùng Task Scheduler của Windows)
+-------------------------------------------------------------------------------------------------------
+2.1. Tạo file D:\SaoLuu\saoluu.sql có nội dung giống 2 dòng DECLARE / BACKUP ở trên.
+2.2. Tạo file D:\SaoLuu\saoluu.bat có 1 dòng (đổi .\SQLEXPRESS thành tên SQL Server của máy, giống dòng
+     Data Source trong file App.config của phần mềm):
+
+sqlcmd -S .\SQLEXPRESS -E -i D:\SaoLuu\saoluu.sql -o D:\SaoLuu\nhatky.txt
+
+2.3. Mở Task Scheduler > Create Basic Task > đặt tên "Sao lưu bán hàng" > Daily, giờ 22:30 >
+     Start a program > chọn file saoluu.bat > Finish.
+2.4. Sáng hôm sau mở D:\SaoLuu xem có file .bak mới và mở nhatky.txt xem có dòng "BACKUP DATABASE successfully processed".
+2.5. Mỗi tuần xóa bớt file cũ, giữ lại khoảng 14 bản gần nhất.
+
+
+3. KHÔI PHỤC
+-----------
+3.1. Đóng phần mềm bán hàng trên mọi máy đang mở.
+3.2. Trong SSMS chạy:
+
+USE master;
+ALTER DATABASE QuanLyThuongMaiDienTu SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+RESTORE DATABASE QuanLyThuongMaiDienTu
+FROM DISK = N'D:\SaoLuu\QuanLyThuongMaiDienTu.bak'
+WITH REPLACE, CHECKSUM;
+ALTER DATABASE QuanLyThuongMaiDienTu SET MULTI_USER;
+
+3.3. Mở lại phần mềm, xem màn "Danh sách đơn hàng" có đúng đơn cuối cùng trước lúc sao lưu không.
+     Đơn lập sau lúc sao lưu sẽ không có, phải nhập lại từ sàn (Kênh Người Bán Shopee, TikTok Shop Seller Center).
+
+Khôi phục sang máy khác (đường dẫn file dữ liệu khác máy cũ): xem tên file trong bản sao lưu bằng
+
+RESTORE FILELISTONLY FROM DISK = N'D:\SaoLuu\QuanLyThuongMaiDienTu.bak';
+
+rồi thêm vào lệnh RESTORE ở bước 3.2 hai dòng MOVE, ví dụ:
+WITH REPLACE, CHECKSUM,
+     MOVE N'QuanLyThuongMaiDienTu' TO N'C:\DuLieu\QuanLyThuongMaiDienTu.mdf',
+     MOVE N'QuanLyThuongMaiDienTu_log' TO N'C:\DuLieu\QuanLyThuongMaiDienTu_log.ldf';
+(Tên bên trái lấy đúng cột LogicalName mà lệnh FILELISTONLY in ra.)
+
+
+4. KIỂM TRA SAU KHI CHẠY FILE SQL
+---------------------------------
+Mới chạy file QuanLyThuongMaiDienTu_Database.sql xong thì mở file KiemTra_SauKhiChay.sql trong SSMS và bấm Execute.
+Mỗi dòng in ra ĐÚNG hoặc SAI so với số đã tính trước. Có dòng SAI thì xem tab Messages lúc chạy file database có dòng lỗi nào không.

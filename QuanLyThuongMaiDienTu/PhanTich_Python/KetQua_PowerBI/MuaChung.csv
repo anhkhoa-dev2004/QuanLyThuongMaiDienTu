@@ -1,0 +1,131 @@
+﻿MaSPChinh,TenSPChinh,MaSPKem,TenSPKem,SoDonCoCaHai,PhanTramTongDon,MuaAThiMuaKemB,GapMayLanBinhThuong,NenLamCombo
+SKU008,Webcam Full HD Logitech C922,SKU003,Màn hình Dell UltraSharp 24 inch,70,4.3,46.98,4.87,Có
+SKU003,Màn hình Dell UltraSharp 24 inch,SKU008,Webcam Full HD Logitech C922,70,4.3,44.87,4.87,Có
+SKU010,Màn hình Gaming LG UltraGear 27 inch,SKU002,Bàn phím cơ AKKO 3087,54,3.3,62.79,3.42,Có
+SKU005,Tai nghe Bluetooth Sony WH-1000XM5,SKU011,Cáp sạc Type-C Anker 67W,51,3.2,62.2,2.11,Có
+SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,SKU011,Cáp sạc Type-C Anker 67W,102,6.3,60.36,2.04,Có
+SKU001,Chuột không dây Logitech M330,SKU004,Lót chuột Gaming RGB Corsair,284,17.6,57.84,1.69,Có
+SKU004,Lót chuột Gaming RGB Corsair,SKU001,Chuột không dây Logitech M330,284,17.6,51.26,1.69,Có
+SKU007,Router Wifi 6 TP-Link Archer AX12,SKU011,Cáp sạc Type-C Anker 67W,60,3.7,38.71,1.31,Có
+SKU002,Bàn phím cơ AKKO 3087,SKU004,Lót chuột Gaming RGB Corsair,121,7.5,40.74,1.19,Có
+SKU002,Bàn phím cơ AKKO 3087,SKU010,Màn hình Gaming LG UltraGear 27 inch,54,3.3,18.18,3.42,Không
+SKU011,Cáp sạc Type-C Anker 67W,SKU005,Tai nghe Bluetooth Sony WH-1000XM5,51,3.2,10.69,2.11,Không
+SKU011,Cáp sạc Type-C Anker 67W,SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,102,6.3,21.38,2.04,Không
+SKU011,Cáp sạc Type-C Anker 67W,SKU007,Router Wifi 6 TP-Link Archer AX12,60,3.7,12.58,1.31,Không
+SKU004,Lót chuột Gaming RGB Corsair,SKU002,Bàn phím cơ AKKO 3087,121,7.5,21.84,1.19,Không
+SKU006,Loa Bluetooth JBL Charge 5,SKU007,Router Wifi 6 TP-Link Archer AX12,7,0.4,9.72,1.01,Không
+SKU007,Router Wifi 6 TP-Link Archer AX12,SKU006,Loa Bluetooth JBL Charge 5,7,0.4,4.52,1.01,Không
+SKU009,Giá đỡ Laptop Hợp kim Nhôm,SKU004,Lót chuột Gaming RGB Corsair,91,5.6,33.7,0.98,Không
+SKU004,Lót chuột Gaming RGB Corsair,SKU009,Giá đỡ Laptop Hợp kim Nhôm,91,5.6,16.43,0.98,Không
+SKU009,Giá đỡ Laptop Hợp kim Nhôm,SKU001,Chuột không dây Logitech M330,76,4.7,28.15,0.93,Không
+SKU001,Chuột không dây Logitech M330,SKU009,Giá đỡ Laptop Hợp kim Nhôm,76,4.7,15.48,0.93,Không
+SKU006,Loa Bluetooth JBL Charge 5,SKU009,Giá đỡ Laptop Hợp kim Nhôm,11,0.7,15.28,0.91,Không
+SKU009,Giá đỡ Laptop Hợp kim Nhôm,SKU006,Loa Bluetooth JBL Charge 5,11,0.7,4.07,0.91,Không
+SKU007,Router Wifi 6 TP-Link Archer AX12,SKU009,Giá đỡ Laptop Hợp kim Nhôm,20,1.2,12.9,0.77,Không
+SKU009,Giá đỡ Laptop Hợp kim Nhôm,SKU007,Router Wifi 6 TP-Link Archer AX12,20,1.2,7.41,0.77,Không
+SKU003,Màn hình Dell UltraSharp 24 inch,SKU009,Giá đỡ Laptop Hợp kim Nhôm,18,1.1,11.54,0.69,Không
+SKU009,Giá đỡ Laptop Hợp kim Nhôm,SKU003,Màn hình Dell UltraSharp 24 inch,18,1.1,6.67,0.69,Không
+SKU007,Router Wifi 6 TP-Link Archer AX12,SKU001,Chuột không dây Logitech M330,32,2.0,20.65,0.68,Không
+SKU001,Chuột không dây Logitech M330,SKU007,Router Wifi 6 TP-Link Archer AX12,32,2.0,6.52,0.68,Không
+SKU006,Loa Bluetooth JBL Charge 5,SKU011,Cáp sạc Type-C Anker 67W,13,0.8,18.06,0.61,Không
+SKU011,Cáp sạc Type-C Anker 67W,SKU006,Loa Bluetooth JBL Charge 5,13,0.8,2.73,0.61,Không
+SKU003,Màn hình Dell UltraSharp 24 inch,SKU001,Chuột không dây Logitech M330,28,1.7,17.95,0.59,Không
+SKU001,Chuột không dây Logitech M330,SKU003,Màn hình Dell UltraSharp 24 inch,28,1.7,5.7,0.59,Không
+SKU005,Tai nghe Bluetooth Sony WH-1000XM5,SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,5,0.3,6.1,0.58,Không
+SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,SKU005,Tai nghe Bluetooth Sony WH-1000XM5,5,0.3,2.96,0.58,Không
+SKU010,Màn hình Gaming LG UltraGear 27 inch,SKU009,Giá đỡ Laptop Hợp kim Nhôm,8,0.5,9.3,0.56,Không
+SKU009,Giá đỡ Laptop Hợp kim Nhôm,SKU010,Màn hình Gaming LG UltraGear 27 inch,8,0.5,2.96,0.56,Không
+SKU006,Loa Bluetooth JBL Charge 5,SKU005,Tai nghe Bluetooth Sony WH-1000XM5,2,0.1,2.78,0.55,Không
+SKU005,Tai nghe Bluetooth Sony WH-1000XM5,SKU006,Loa Bluetooth JBL Charge 5,2,0.1,2.44,0.55,Không
+SKU006,Loa Bluetooth JBL Charge 5,SKU002,Bàn phím cơ AKKO 3087,7,0.4,9.72,0.53,Không
+SKU006,Loa Bluetooth JBL Charge 5,SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,4,0.2,5.56,0.53,Không
+SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,SKU006,Loa Bluetooth JBL Charge 5,4,0.2,2.37,0.53,Không
+SKU002,Bàn phím cơ AKKO 3087,SKU006,Loa Bluetooth JBL Charge 5,7,0.4,2.36,0.53,Không
+SKU005,Tai nghe Bluetooth Sony WH-1000XM5,SKU001,Chuột không dây Logitech M330,13,0.8,15.85,0.52,Không
+SKU008,Webcam Full HD Logitech C922,SKU009,Giá đỡ Laptop Hợp kim Nhôm,13,0.8,8.72,0.52,Không
+SKU009,Giá đỡ Laptop Hợp kim Nhôm,SKU008,Webcam Full HD Logitech C922,13,0.8,4.81,0.52,Không
+SKU001,Chuột không dây Logitech M330,SKU005,Tai nghe Bluetooth Sony WH-1000XM5,13,0.8,2.65,0.52,Không
+SKU009,Giá đỡ Laptop Hợp kim Nhôm,SKU011,Cáp sạc Type-C Anker 67W,41,2.5,15.19,0.51,Không
+SKU011,Cáp sạc Type-C Anker 67W,SKU009,Giá đỡ Laptop Hợp kim Nhôm,41,2.5,8.6,0.51,Không
+SKU005,Tai nghe Bluetooth Sony WH-1000XM5,SKU007,Router Wifi 6 TP-Link Archer AX12,4,0.2,4.88,0.51,Không
+SKU007,Router Wifi 6 TP-Link Archer AX12,SKU005,Tai nghe Bluetooth Sony WH-1000XM5,4,0.2,2.58,0.51,Không
+SKU007,Router Wifi 6 TP-Link Archer AX12,SKU004,Lót chuột Gaming RGB Corsair,26,1.6,16.77,0.49,Không
+SKU011,Cáp sạc Type-C Anker 67W,SKU001,Chuột không dây Logitech M330,71,4.4,14.88,0.49,Không
+SKU001,Chuột không dây Logitech M330,SKU011,Cáp sạc Type-C Anker 67W,71,4.4,14.46,0.49,Không
+SKU004,Lót chuột Gaming RGB Corsair,SKU007,Router Wifi 6 TP-Link Archer AX12,26,1.6,4.69,0.49,Không
+SKU008,Webcam Full HD Logitech C922,SKU011,Cáp sạc Type-C Anker 67W,21,1.3,14.09,0.48,Không
+SKU011,Cáp sạc Type-C Anker 67W,SKU008,Webcam Full HD Logitech C922,21,1.3,4.4,0.48,Không
+SKU003,Màn hình Dell UltraSharp 24 inch,SKU004,Lót chuột Gaming RGB Corsair,25,1.5,16.03,0.47,Không
+SKU007,Router Wifi 6 TP-Link Archer AX12,SKU003,Màn hình Dell UltraSharp 24 inch,7,0.4,4.52,0.47,Không
+SKU004,Lót chuột Gaming RGB Corsair,SKU003,Màn hình Dell UltraSharp 24 inch,25,1.5,4.51,0.47,Không
+SKU003,Màn hình Dell UltraSharp 24 inch,SKU007,Router Wifi 6 TP-Link Archer AX12,7,0.4,4.49,0.47,Không
+SKU011,Cáp sạc Type-C Anker 67W,SKU004,Lót chuột Gaming RGB Corsair,76,4.7,15.93,0.46,Không
+SKU008,Webcam Full HD Logitech C922,SKU001,Chuột không dây Logitech M330,21,1.3,14.09,0.46,Không
+SKU006,Loa Bluetooth JBL Charge 5,SKU001,Chuột không dây Logitech M330,10,0.6,13.89,0.46,Không
+SKU004,Lót chuột Gaming RGB Corsair,SKU011,Cáp sạc Type-C Anker 67W,76,4.7,13.72,0.46,Không
+SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,SKU009,Giá đỡ Laptop Hợp kim Nhôm,13,0.8,7.69,0.46,Không
+SKU009,Giá đỡ Laptop Hợp kim Nhôm,SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,13,0.8,4.81,0.46,Không
+SKU001,Chuột không dây Logitech M330,SKU008,Webcam Full HD Logitech C922,21,1.3,4.28,0.46,Không
+SKU005,Tai nghe Bluetooth Sony WH-1000XM5,SKU010,Màn hình Gaming LG UltraGear 27 inch,2,0.1,2.44,0.46,Không
+SKU010,Màn hình Gaming LG UltraGear 27 inch,SKU005,Tai nghe Bluetooth Sony WH-1000XM5,2,0.1,2.33,0.46,Không
+SKU001,Chuột không dây Logitech M330,SKU006,Loa Bluetooth JBL Charge 5,10,0.6,2.04,0.46,Không
+SKU008,Webcam Full HD Logitech C922,SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,7,0.4,4.7,0.45,Không
+SKU006,Loa Bluetooth JBL Charge 5,SKU008,Webcam Full HD Logitech C922,3,0.2,4.17,0.45,Không
+SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,SKU008,Webcam Full HD Logitech C922,7,0.4,4.14,0.45,Không
+SKU008,Webcam Full HD Logitech C922,SKU006,Loa Bluetooth JBL Charge 5,3,0.2,2.01,0.45,Không
+SKU005,Tai nghe Bluetooth Sony WH-1000XM5,SKU009,Giá đỡ Laptop Hợp kim Nhôm,6,0.4,7.32,0.44,Không
+SKU009,Giá đỡ Laptop Hợp kim Nhôm,SKU005,Tai nghe Bluetooth Sony WH-1000XM5,6,0.4,2.22,0.44,Không
+SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,SKU002,Bàn phím cơ AKKO 3087,13,0.8,7.69,0.42,Không
+SKU002,Bàn phím cơ AKKO 3087,SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,13,0.8,4.38,0.42,Không
+SKU008,Webcam Full HD Logitech C922,SKU004,Lót chuột Gaming RGB Corsair,21,1.3,14.09,0.41,Không
+SKU004,Lót chuột Gaming RGB Corsair,SKU008,Webcam Full HD Logitech C922,21,1.3,3.79,0.41,Không
+SKU002,Bàn phím cơ AKKO 3087,SKU001,Chuột không dây Logitech M330,36,2.2,12.12,0.4,Không
+SKU001,Chuột không dây Logitech M330,SKU002,Bàn phím cơ AKKO 3087,36,2.2,7.33,0.4,Không
+SKU005,Tai nghe Bluetooth Sony WH-1000XM5,SKU004,Lót chuột Gaming RGB Corsair,11,0.7,13.41,0.39,Không
+SKU003,Màn hình Dell UltraSharp 24 inch,SKU011,Cáp sạc Type-C Anker 67W,18,1.1,11.54,0.39,Không
+SKU011,Cáp sạc Type-C Anker 67W,SKU003,Màn hình Dell UltraSharp 24 inch,18,1.1,3.77,0.39,Không
+SKU004,Lót chuột Gaming RGB Corsair,SKU005,Tai nghe Bluetooth Sony WH-1000XM5,11,0.7,1.99,0.39,Không
+SKU002,Bàn phím cơ AKKO 3087,SKU011,Cáp sạc Type-C Anker 67W,33,2.0,11.11,0.38,Không
+SKU011,Cáp sạc Type-C Anker 67W,SKU002,Bàn phím cơ AKKO 3087,33,2.0,6.92,0.38,Không
+SKU010,Màn hình Gaming LG UltraGear 27 inch,SKU008,Webcam Full HD Logitech C922,3,0.2,3.49,0.38,Không
+SKU008,Webcam Full HD Logitech C922,SKU010,Màn hình Gaming LG UltraGear 27 inch,3,0.2,2.01,0.38,Không
+SKU008,Webcam Full HD Logitech C922,SKU002,Bàn phím cơ AKKO 3087,10,0.6,6.71,0.37,Không
+SKU003,Màn hình Dell UltraSharp 24 inch,SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,6,0.4,3.85,0.37,Không
+SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,SKU003,Màn hình Dell UltraSharp 24 inch,6,0.4,3.55,0.37,Không
+SKU002,Bàn phím cơ AKKO 3087,SKU008,Webcam Full HD Logitech C922,10,0.6,3.37,0.37,Không
+SKU006,Loa Bluetooth JBL Charge 5,SKU004,Lót chuột Gaming RGB Corsair,9,0.6,12.5,0.36,Không
+SKU010,Màn hình Gaming LG UltraGear 27 inch,SKU003,Màn hình Dell UltraSharp 24 inch,3,0.2,3.49,0.36,Không
+SKU003,Màn hình Dell UltraSharp 24 inch,SKU010,Màn hình Gaming LG UltraGear 27 inch,3,0.2,1.92,0.36,Không
+SKU004,Lót chuột Gaming RGB Corsair,SKU006,Loa Bluetooth JBL Charge 5,9,0.6,1.62,0.36,Không
+SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,SKU004,Lót chuột Gaming RGB Corsair,20,1.2,11.83,0.35,Không
+SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,SKU001,Chuột không dây Logitech M330,18,1.1,10.65,0.35,Không
+SKU001,Chuột không dây Logitech M330,SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,18,1.1,3.67,0.35,Không
+SKU004,Lót chuột Gaming RGB Corsair,SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,20,1.2,3.61,0.35,Không
+SKU005,Tai nghe Bluetooth Sony WH-1000XM5,SKU002,Bàn phím cơ AKKO 3087,5,0.3,6.1,0.33,Không
+SKU002,Bàn phím cơ AKKO 3087,SKU005,Tai nghe Bluetooth Sony WH-1000XM5,5,0.3,1.68,0.33,Không
+SKU009,Giá đỡ Laptop Hợp kim Nhôm,SKU002,Bàn phím cơ AKKO 3087,16,1.0,5.93,0.32,Không
+SKU002,Bàn phím cơ AKKO 3087,SKU009,Giá đỡ Laptop Hợp kim Nhôm,16,1.0,5.39,0.32,Không
+SKU010,Màn hình Gaming LG UltraGear 27 inch,SKU001,Chuột không dây Logitech M330,8,0.5,9.3,0.31,Không
+SKU003,Màn hình Dell UltraSharp 24 inch,SKU002,Bàn phím cơ AKKO 3087,9,0.6,5.77,0.31,Không
+SKU007,Router Wifi 6 TP-Link Archer AX12,SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,5,0.3,3.23,0.31,Không
+SKU002,Bàn phím cơ AKKO 3087,SKU003,Màn hình Dell UltraSharp 24 inch,9,0.6,3.03,0.31,Không
+SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,SKU007,Router Wifi 6 TP-Link Archer AX12,5,0.3,2.96,0.31,Không
+SKU001,Chuột không dây Logitech M330,SKU010,Màn hình Gaming LG UltraGear 27 inch,8,0.5,1.63,0.31,Không
+SKU006,Loa Bluetooth JBL Charge 5,SKU003,Màn hình Dell UltraSharp 24 inch,2,0.1,2.78,0.29,Không
+SKU003,Màn hình Dell UltraSharp 24 inch,SKU006,Loa Bluetooth JBL Charge 5,2,0.1,1.28,0.29,Không
+SKU010,Màn hình Gaming LG UltraGear 27 inch,SKU011,Cáp sạc Type-C Anker 67W,7,0.4,8.14,0.28,Không
+SKU007,Router Wifi 6 TP-Link Archer AX12,SKU002,Bàn phím cơ AKKO 3087,8,0.5,5.16,0.28,Không
+SKU002,Bàn phím cơ AKKO 3087,SKU007,Router Wifi 6 TP-Link Archer AX12,8,0.5,2.69,0.28,Không
+SKU011,Cáp sạc Type-C Anker 67W,SKU010,Màn hình Gaming LG UltraGear 27 inch,7,0.4,1.47,0.28,Không
+SKU010,Màn hình Gaming LG UltraGear 27 inch,SKU004,Lót chuột Gaming RGB Corsair,8,0.5,9.3,0.27,Không
+SKU004,Lót chuột Gaming RGB Corsair,SKU010,Màn hình Gaming LG UltraGear 27 inch,8,0.5,1.44,0.27,Không
+SKU005,Tai nghe Bluetooth Sony WH-1000XM5,SKU003,Màn hình Dell UltraSharp 24 inch,2,0.1,2.44,0.25,Không
+SKU003,Màn hình Dell UltraSharp 24 inch,SKU005,Tai nghe Bluetooth Sony WH-1000XM5,2,0.1,1.28,0.25,Không
+SKU010,Màn hình Gaming LG UltraGear 27 inch,SKU007,Router Wifi 6 TP-Link Archer AX12,2,0.1,2.33,0.24,Không
+SKU007,Router Wifi 6 TP-Link Archer AX12,SKU010,Màn hình Gaming LG UltraGear 27 inch,2,0.1,1.29,0.24,Không
+SKU010,Màn hình Gaming LG UltraGear 27 inch,SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,2,0.1,2.33,0.22,Không
+SKU012,Ổ cứng SSD Samsung 980 Pro 1TB,SKU010,Màn hình Gaming LG UltraGear 27 inch,2,0.1,1.18,0.22,Không
+SKU008,Webcam Full HD Logitech C922,SKU007,Router Wifi 6 TP-Link Archer AX12,3,0.2,2.01,0.21,Không
+SKU007,Router Wifi 6 TP-Link Archer AX12,SKU008,Webcam Full HD Logitech C922,3,0.2,1.94,0.21,Không
+SKU005,Tai nghe Bluetooth Sony WH-1000XM5,SKU008,Webcam Full HD Logitech C922,1,0.1,1.22,0.13,Không
+SKU008,Webcam Full HD Logitech C922,SKU005,Tai nghe Bluetooth Sony WH-1000XM5,1,0.1,0.67,0.13,Không

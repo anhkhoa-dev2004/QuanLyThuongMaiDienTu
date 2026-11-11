@@ -1,0 +1,221 @@
+﻿HƯỚNG DẪN LÀM BÁO CÁO POWER BI
+==============================
+
+Power BI đọc file Excel do Python xuất ra. Số trên Power BI, trên phần mềm WinForms và trong file Python
+dùng chung một cách tính, nên phải ra giống nhau.
+
+
+BƯỚC 1. TẠO FILE EXCEL CHO POWER BI
+-----------------------------------
+1.1. Mở cửa sổ lệnh (cmd), vào thư mục PhanTich_Python:
+       cd duong_dan\QuanLyThuongMaiDienTu\PhanTich_Python
+1.2. Cài thư viện (chỉ làm 1 lần):
+       pip install pandas openpyxl pyodbc
+1.3. Chạy 1 trong 2 lệnh:
+     - Đã chạy file SQL trong SSMS (khuyên dùng):
+       python phan_tich_ban_hang.py --sqlserver "DRIVER={ODBC Driver 17 for SQL Server};SERVER=.\SQLPHANTAN1;DATABASE=QuanLyThuongMaiDienTu;Trusted_Connection=yes;"
+     - Máy chưa có SQL Server, chỉ muốn chạy thử:
+       python phan_tich_ban_hang.py --sqlfile ..\QuanLyThuongMaiDienTu_Database.sql
+1.4. Màn hình hiện "Bước 1/12" đến "Bước 12/12", rồi in phần VIỆC CẦN LÀM.
+1.5. Kết quả nằm trong thư mục PhanTich_Python\KetQua_PowerBI:
+       DuLieu_PowerBI.xlsx   (mỗi trang tính là 1 bảng; trang DocTruoc giải thích từng bảng)
+       các file .csv         (cùng nội dung, mở bằng Excel được)
+       ViecCanLam.txt        (tóm tắt việc cần làm)
+
+
+BƯỚC 2. ĐƯA DỮ LIỆU VÀO POWER BI
+--------------------------------
+2.1. Mở Power BI Desktop, chọn Blank report.
+2.2. Bấm Get data > Excel workbook, chọn file KetQua_PowerBI\DuLieu_PowerBI.xlsx.
+2.3. Đánh dấu các trang tính sau rồi bấm Load:
+       BanHang, TienDonHang, Ngay, SanPham_BangDiem, KhachHang_Nhom, CamXuc_DanhGia, CamXuc_TraHang, TuKhachHayNoi,
+       LyDoMua_TongHop, LyDoMua_ChiTiet, LyDoMua_TheoSanPham, MuaTheoHungSale, MuaChung, GioVang, KhoHang, LocDuLieu_NhatKy
+2.4. Kiểm tra kiểu dữ liệu: bấm biểu tượng bảng (Table view) ở cạnh trái, chọn bảng KhachHang_Nhom,
+     bấm cột SoDT_DaSua, ở ô Data type chọn Text (để giữ số 0 ở đầu số điện thoại).
+     Làm tương tự với cột Ngay của bảng Ngay và bảng BanHang: Data type chọn Date.
+
+
+BƯỚC 3. NỐI CÁC BẢNG
+--------------------
+3.1. Bấm biểu tượng sơ đồ (Model view) ở cạnh trái.
+3.2. Power BI có thể đã tự nối vài đường. Xóa đường nào khác danh sách dưới đây (bấm vào đường, nhấn Delete).
+3.3. Kéo cột bên trái thả lên cột bên phải để tạo đúng 7 đường nối sau (loại "Một - Nhiều", hướng lọc "Single"):
+       Ngay[Ngay]              ->  BanHang[Ngay]
+       Ngay[Ngay]              ->  TienDonHang[Ngay]
+       SanPham_BangDiem[MaSP]  ->  BanHang[MaSP]
+       SanPham_BangDiem[MaSP]  ->  CamXuc_DanhGia[MaSP]
+       SanPham_BangDiem[MaSP]  ->  CamXuc_TraHang[MaSP]
+       SanPham_BangDiem[MaSP]  ->  KhoHang[MaSP]
+       KhachHang_Nhom[MaKH]    ->  BanHang[MaKH]
+3.4. Chọn bảng Ngay, vào Table tools > Mark as date table, chọn cột Ngay.
+
+
+BƯỚC 4. TẠO CÁC CON SỐ CẦN XEM
+------------------------------
+4.1. Chọn bảng BanHang ở khung Data bên phải.
+4.2. Bấm Home > New measure, dán 1 dòng dưới đây, nhấn Enter. Lặp lại cho từng dòng.
+
+Doanh thu = SUM(BanHang[DoanhThu])
+Số đơn = CALCULATE(DISTINCTCOUNT(BanHang[MaDH]), BanHang[LaDonHuy] = "Không")
+Đơn hủy = CALCULATE(DISTINCTCOUNT(BanHang[MaDH]), BanHang[LaDonHuy] = "Có")
+% đơn hủy = DIVIDE([Đơn hủy], [Đơn hủy] + [Số đơn])
+Giá trị 1 đơn = DIVIDE([Doanh thu], [Số đơn])
+Lãi gộp = SUM(BanHang[LaiGop])
+% lãi gộp = DIVIDE([Lãi gộp], [Doanh thu])
+Doanh thu mỗi ngày sale = DIVIDE(CALCULATE([Doanh thu], Ngay[LaNgaySale] = "Có"), CALCULATE(COUNTROWS(Ngay), Ngay[LaNgaySale] = "Có"))
+Doanh thu mỗi ngày thường = DIVIDE(CALCULATE([Doanh thu], Ngay[LaNgaySale] = "Không"), CALCULATE(COUNTROWS(Ngay), Ngay[LaNgaySale] = "Không"))
+Ngày sale gấp mấy lần = DIVIDE([Doanh thu mỗi ngày sale], [Doanh thu mỗi ngày thường])
+% doanh thu từ khách mua vì cảm xúc = DIVIDE(CALCULATE([Doanh thu], BanHang[KieuLyDoMua] = "Cảm xúc"), CALCULATE([Doanh thu], BanHang[KieuLyDoMua] <> "Chưa khảo sát"))
+
+4.2b. Chọn bảng TienDonHang, tạo thêm (chỉ đơn đã giao mới có phí sàn và tiền thực nhận):
+
+Phí sàn = SUM(TienDonHang[PhiSan])
+Tiền hoàn khách = SUM(TienDonHang[TienHoanKhach])
+Shop thực nhận = SUM(TienDonHang[TienShopNhan])
+Lãi sau phí sàn = SUM(TienDonHang[LaiGop])
+Tiền hàng đơn đã giao = CALCULATE(SUM(TienDonHang[TienHang]), TienDonHang[TrangThai] IN {"Đã giao", "Trả hàng/Hoàn tiền"})
+% lãi sau phí sàn = DIVIDE([Lãi sau phí sàn], [Tiền hàng đơn đã giao])
+
+4.3. Chọn bảng CamXuc_DanhGia, tạo thêm:
+
+% khách hài lòng = DIVIDE(CALCULATE(COUNTROWS(CamXuc_DanhGia), CamXuc_DanhGia[SoSao] >= 4), COUNTROWS(CamXuc_DanhGia))
+Đánh giá có lời chê = CALCULATE(COUNTROWS(CamXuc_DanhGia), CamXuc_DanhGia[CamXucTheoLoi] = "Chê")
+Sao cao mà lời chê = CALCULATE(COUNTROWS(CamXuc_DanhGia), CamXuc_DanhGia[SaoCaoMaLoiChe] = "Có")
+
+4.4. Chọn bảng LyDoMua_ChiTiet, tạo thêm:
+
+% câu trả lời vì cảm xúc = DIVIDE(CALCULATE(COUNTROWS(LyDoMua_ChiTiet), LyDoMua_ChiTiet[KieuLyDoMua] = "Cảm xúc"), COUNTROWS(LyDoMua_ChiTiet))
+Hào hứng trung bình = AVERAGE(LyDoMua_ChiTiet[MucHaoHung])
+
+4.5. Định dạng: chọn từng con số ở khung Data, ở Measure tools chọn
+       Doanh thu, Lãi gộp, Giá trị 1 đơn, Doanh thu mỗi ngày...: Whole number, bật dấu phẩy ngăn cách
+       các con số bắt đầu bằng %: Percentage, 1 chữ số thập phân
+
+
+BƯỚC 5. DỰNG 4 TRANG BÁO CÁO
+----------------------------
+Cách đặt 1 hình: bấm hình trong khung Visualizations, rồi kéo cột / con số vào các ô bên dưới hình.
+
+TRANG 1 - BÁN ĐƯỢC BAO NHIÊU
+  5.1. 6 ô Card: Doanh thu, Số đơn, Giá trị 1 đơn, % lãi gộp, % đơn hủy, Ngày sale gấp mấy lần.
+  5.1b. 3 ô Card nữa: Phí sàn, Lãi sau phí sàn, % lãi sau phí sàn.
+        Biểu đồ cột (Clustered column chart): X-axis = TienDonHang[KenhBan], Y-axis = Phí sàn và Lãi sau phí sàn.
+        Hình này cho thấy bán qua sàn tốn bao nhiêu phí và còn lãi bao nhiêu so với bán ở cửa hàng.
+  5.2. Biểu đồ cột (Clustered column chart): X-axis = Ngay[ThangNam], Y-axis = Doanh thu.
+  5.3. Biểu đồ thanh ngang (Clustered bar chart): Y-axis = SanPham_BangDiem[TenSP], X-axis = Doanh thu.
+  5.4. Bảng nhiệt giờ vàng: chọn Matrix, Rows = GioVang[Thu], Columns = GioVang[Gio], Values = GioVang[SoDon];
+       vào Format > Cell elements > bật Background color để ô nhiều đơn có màu đậm.
+       (Kéo GioVang[ThuSo] vào Tooltips, rồi bấm cột Thu ở Table view > Sort by column > ThuSo để Thứ 2 đứng đầu.)
+  5.5. 2 Slicer: Ngay[ThangNam] và Ngay[LaNgaySale] để lọc theo tháng và theo ngày sale.
+
+TRANG 2 - KHÁCH MUA VÌ CẢM XÚC HAY VÌ CẦN DÙNG
+  5.6. 3 ô Card: % câu trả lời vì cảm xúc, % doanh thu từ khách mua vì cảm xúc, Hào hứng trung bình.
+  5.7. Biểu đồ tròn (Donut chart): Legend = LyDoMua_ChiTiet[KieuLyDoMua], Values = Count of LyDoMua_ChiTiet[Id].
+  5.8. Biểu đồ thanh ngang: Y-axis = LyDoMua_TongHop[NhomLyDoMua], X-axis = LyDoMua_TongHop[DoanhThuCacDon].
+  5.9. Bảng (Table): LyDoMua_TongHop[NhomLyDoMua], [SoCauTraLoi], [GiaTriDonTB], [HaoHungTB], [PhanTramDonCoTra], [CachBanHop].
+  5.10. Ma trận: Rows = LyDoMua_TheoSanPham[TenSP], Columns = [NhomLyDoMua], Values = [PhanTramCuaSanPham].
+
+TRANG 3 - KHÁCH VUI HAY BUỒN
+  5.11. 3 ô Card: % khách hài lòng, Đánh giá có lời chê, Sao cao mà lời chê.
+  5.12. Biểu đồ thanh ngang: Y-axis = SanPham_BangDiem[TenSP], X-axis = % khách hài lòng.
+        Format > Bars > Colors > fx: đỏ khi dưới 0,6; vàng khi dưới 0,8; xanh từ 0,8 (giống phần mềm WinForms).
+  5.13. 2 bảng: TuKhachHayNoi lọc Loai = "Khen" và Loai = "Chê" (cột TuKhachNoi, SoLan, NhieuNhatO).
+  5.14. Biểu đồ cột chồng: X-axis = CamXuc_TraHang[NhomLyDoTra], Y-axis = Count of [MaTraHang], Legend = [TenSP].
+
+TRANG 4 - KHO HÀNG, MÓN ĐANG HOT VÀ VIỆC CẦN LÀM
+  5.15. Bảng: KhoHang[TenSP], [TonHienTai], [XuHuongBan], [DuDoanBan30NgayToi], [DuBanMayNgay], [MucPhaiDatHang],
+        [NenNhapThem], [TinhTrang], [NenLamGi].
+        Format > Cell elements > Background color cho cột TinhTrang (KHẨN CẤP đỏ, ĐẶT HÀNG NGAY vàng)
+        và cột XuHuongBan (ĐANG HOT - bán nhanh lên màu cam).
+        Các cột này tính giống hệt bảng vw_DuBaoSanPham trong database và màn hình "Dự báo bán và lúc nào đặt hàng":
+          ĐANG HOT = 30 ngày gần nhất bán nhanh hơn trung bình 90 ngày từ 20% trở lên (cần bán từ 30 cái trong 90 ngày).
+          Dự đoán bán 30 ngày tới = tốc độ bán mỗi ngày x 30 (món đang bán nhanh lên lấy tốc độ 30 ngày gần nhất,
+          còn lại lấy tốc độ 90 ngày).
+          Nên nhập thêm = đủ bán 30 ngày sau khi hàng về, chỉ hiện khi tình trạng là KHẨN CẤP hoặc ĐẶT HÀNG NGAY.
+  5.15b. Ô Card "Món đang hot": tạo con số
+        Món đang hot = CALCULATE(COUNTROWS(KhoHang), KhoHang[XuHuongBan] = "ĐANG HOT - bán nhanh lên")
+  5.16. Bảng: SanPham_BangDiem[TenSP], [MonChuLuc], [CamXuc], [ViecNenLam] (bật Format > Values > Text wrap).
+  5.17. Bảng: MuaChung lọc NenLamCombo = "Có" (TenSPChinh, TenSPKem, MuaAThiMuaKemB, GapMayLanBinhThuong).
+  5.18. Biểu đồ cột: X-axis = KhachHang_Nhom[NhomKhach], Y-axis = Count of KhachHang_Nhom[MaKH].
+
+
+TRANG 5 - CUNG - CẦU: HÀNG NHIỀU HAY KHÁCH NHIỀU
+  5.19. Ở bước 2.3 đánh dấu thêm 2 trang tính CungCau_SanPham và CungCau_TheoThang.
+        Ở bước 3.3 nối thêm 2 đường: SanPham_BangDiem[MaSP] -> CungCau_SanPham[MaSP]
+                                      SanPham_BangDiem[MaSP] -> CungCau_TheoThang[MaSP]
+  5.20. Tạo con số: Tiền nằm trong kho = SUM(CungCau_SanPham[TienNamTrongKho]) rồi đặt vào ô Card.
+  5.21. Bảng: CungCau_SanPham[TenSP], [CungCau], [GiaiDoan], [GiaXuHuong], [ThuTienVe], [TienNamTrongKho], [NenLamGi].
+  5.22. Biểu đồ đường (Line chart): X-axis = CungCau_TheoThang[Thang], Y-axis = Sum of [Cau] và Sum of [Cung].
+        Thêm Slicer CungCau_TheoThang[TenSP] để chọn từng sản phẩm.
+        Đường Cầu cao gần chạm đường Cung là hàng sắp mỏng; đường Cung cao vượt xa đường Cầu là hàng dư.
+  Cách đọc: Cung = hàng có để bán, Cầu = khách đặt. Cung > Cầu: dừng nhập, xả sớm. Cung < Cầu: giữ giá, nhập vừa đủ.
+  Đầu sóng: kiếm tiền. Giữa sóng: chốt lời. Cuối sóng: dừng trước khi giá rẻ dần.
+
+TRANG 6 - LÃI THẬT SAU KHI TRỪ CHI PHÍ, TIỀN SÀN CHUYỂN VỀ, NỢ NHÀ CUNG CẤP
+  5.23. Ở bước 2.3 đánh dấu thêm 4 trang tính LaiRongTheoThang, ChiPhiVanHanh, DoiSoatTienSan, CongNoNhaCungCap.
+        4 bảng này không cần nối với bảng nào (mỗi bảng tự đủ cột để xem).
+  5.24. Tạo con số (chọn bảng LaiRongTheoThang > New measure):
+        Chi phí vận hành = SUM(LaiRongTheoThang[ChiPhiVanHanh])
+        Hàng mất, hỏng = SUM(LaiRongTheoThang[HangMatHong])
+        Lãi ròng = SUM(LaiRongTheoThang[LaiRong])
+        Đặt 3 ô Card: Chi phí vận hành, Hàng mất, hỏng, Lãi ròng.
+  5.25. Biểu đồ cột và đường (Line and clustered column chart): X-axis = LaiRongTheoThang[Thang],
+        Column y-axis = Sum of [LaiGop] và Sum of [ChiPhiVanHanh], Line y-axis = Sum of [LaiRong].
+        Cột chi phí cao hơn cột lãi sau phí sàn là tháng đó lỗ.
+  5.26. Biểu đồ tròn (Donut chart): Legend = ChiPhiVanHanh[NhomChiPhi], Values = Sum of ChiPhiVanHanh[SoTien].
+  5.27. Bảng: DoiSoatTienSan lọc TinhTrang khác "Khớp" (MaDH, KenhBan, NgayGiao, ShopTinhDuocNhan, SoTienSanTra, ChenhLech, TinhTrang).
+  5.28. Bảng: CongNoNhaCungCap lọc ConNo > 0 (MaPN, TenNCC, TongTien, DaTra, ConNo, HanTra, TinhTrang).
+  Lưu ý: chi phí vận hành trong dữ liệu mẫu là số MÔ PHỎNG (xem GHI_CHU_DU_LIEU_MO_PHONG.txt mục 5).
+  Dùng thật thì sửa ở màn "Chi phí vận hành và lãi ròng" trên WinForms rồi chạy lại bằng --sqlserver.
+
+
+BƯỚC 6. KIỂM TRA SỐ CÓ ĐÚNG KHÔNG
+---------------------------------
+Chạy Python bằng --sqlfile với file SQL đi kèm (dữ liệu từ 01/10/2025 đến 30/09/2026, mốc chốt 30/09/2026 23:59),
+Trang 1 và 2 không bật bộ lọc, các ô phải ra đúng các số sau (đã tính lại từ chính dữ liệu đó):
+  Doanh thu ........................................ 3.712.302.000
+  Số đơn ........................................... 1.467
+  Đơn hủy .......................................... 149   (% đơn hủy 9,2%; trong đó 30 đơn giao không thành công)
+  Giá trị 1 đơn .................................... 2.530.540
+  % lãi gộp ........................................ 14,8%
+  Ngày sale gấp mấy lần (theo doanh thu) ........... 1,7   (15.831.327 so với 9.166.384 mỗi ngày; 55 ngày sale, 310 ngày thường)
+  Phí sàn .......................................... 286.300.555
+  Lãi sau phí sàn .................................. 231.114.432   (% lãi sau phí sàn 6,3% tiền hàng các đơn đã giao)
+  % khách hài lòng ................................. 75,8%
+  % câu trả lời vì cảm xúc ......................... 70,9%
+  % doanh thu từ khách mua vì cảm xúc .............. 74,5%
+  Món đang hot ..................................... 4   (Dell 24 inch, Lót chuột Corsair, Webcam C922, Giá đỡ laptop)
+  Tiền nằm trong kho (Trang 5) ..................... 280.788.896   (đã trừ 3 cái thiếu khi kiểm kê 30/09/2026)
+  Chi phí vận hành (Trang 6) ....................... 633.613.500
+  Hàng mất, hỏng (Trang 6) ......................... 55.558.386
+  Lãi ròng (Trang 6) ............................... -458.897.454   (lỗ cả 12 tháng với mức chi phí mô phỏng)
+  Sao cao mà lời chê ............................... 41  (đánh giá 4-5 sao có viết lời mà lời không khen)
+Chạy bằng --sqlserver ngay sau khi chạy file SQL thì cũng phải ra các số này.
+Số khác đi nghĩa là dữ liệu đã đổi (đã thêm đơn, sửa đơn trên phần mềm) hoặc bộ lọc đang bật.
+
+Muốn biết từng con số lấy từ bảng nào, cột nào thì chạy file thứ hai:
+       python nguon_so_lieu.py --sqlfile ..\QuanLyThuongMaiDienTu_Database.sql
+File này in từng con số kèm cách tính và ghi "Khớp" / "KHÔNG KHỚP" so với các số ở trên.
+
+Lưu ý: "Ngày sale gấp mấy lần" ở đây tính theo DOANH THU mỗi ngày. Màn "Bảng thông báo" trên WinForms (thủ tục
+sp_BangThongBao_MuaTheoCamXuc) và trang MuaTheoHungSale tính theo SỐ CÁI bán mỗi ngày (ra 1,6 lần).
+Hai con số đo 2 thứ khác nhau nên không cần bằng nhau.
+
+Lưu ý về lãi: có 2 con số lãi, đo 2 thứ khác nhau.
+  - "Lãi gộp" (bảng BanHang) = doanh thu - giá vốn (giá nhập bình quân), tính cho mọi đơn không hủy, CHƯA trừ phí sàn và tiền hoàn.
+  - "Lãi sau phí sàn" (bảng TienDonHang) giống màn "Báo cáo doanh thu" trên WinForms: chỉ tính đơn đã giao;
+    tiền shop thực nhận = tiền hàng - giảm giá của shop - phí sàn (bảng PhiSan) - tiền hoàn khách;
+    lãi = tiền thực nhận - giá vốn, không tính giá vốn hàng khách trả còn bán được (hàng đó đã về lại kho).
+  Phí sàn Shopee và TikTok lấy từ các bài viết có ghi nguồn trong bảng PhiSan (xem GHI_CHU_DU_LIEU_MO_PHONG.txt).
+  Sau phí sàn, Shopee chỉ còn lãi khoảng 2,6% tiền hàng, TikTok 5,4%, cửa hàng 13,5% (xem ViecCanLam.txt).
+
+Trạng thái đơn (cột TrangThai) theo đúng các bước của Shopee:
+  Chờ xác nhận -> Chờ lấy hàng (đã xuất kho) -> Đang giao -> Đã giao;  Trả hàng/Hoàn tiền;  Đã hủy.
+  Khách nhận tại cửa hàng thì xuất kho xong là Đã giao luôn (cột HinhThucNhan = "Nhận tại cửa hàng").
+  Các đơn đặt sát mốc chốt 30/09/2026 còn đang dở: Chờ xác nhận, Chờ lấy hàng, Đang giao.
+
+
+BƯỚC 7. CẬP NHẬT KHI CÓ ĐƠN MỚI
+-------------------------------
+7.1. Chạy lại lệnh ở bước 1.3 (file Excel cũ bị ghi đè; nhớ đóng file Excel trước khi chạy).
+7.2. Trong Power BI bấm Home > Refresh.
